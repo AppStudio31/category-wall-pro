@@ -49,6 +49,7 @@ class ControllerExtensionModuleOCNCategoryWallPro extends Controller {
 			'module_ocn_category_wall_pro_status' => 0,
 			'module_ocn_category_wall_pro_height_status' => 1,
 			'module_ocn_category_wall_pro_image_status' => 1,
+			'module_ocn_category_wall_pro_image' => '',
 			'module_ocn_category_wall_pro_image_width' => 220,
 			'module_ocn_category_wall_pro_image_height' => 220,
 			'module_ocn_category_wall_pro_subcategory_status' => 1,
@@ -167,6 +168,22 @@ class ControllerExtensionModuleOCNCategoryWallPro extends Controller {
 			? $this->request->post['module_ocn_category_wall_pro_image_status']
 			: (!empty($module_info) ? $module_info['module_ocn_category_wall_pro_image_status'] : $default_data['module_ocn_category_wall_pro_image_status']);
 		
+		$data['module_ocn_category_wall_pro_image'] = isset($this->request->post['module_ocn_category_wall_pro_image'])
+			? $this->request->post['module_ocn_category_wall_pro_image']
+			: (!empty($module_info) ? $module_info['module_ocn_category_wall_pro_image'] : $default_data['module_ocn_category_wall_pro_image']);
+		
+		$this->load->model('tool/image');
+
+		if (isset($this->request->post['module_ocn_category_wall_pro_image']) && is_file(DIR_IMAGE . $this->request->post['module_ocn_category_wall_pro_image'])) {
+			$data['thumb'] = $this->model_tool_image->resize($this->request->post['module_ocn_category_wall_pro_image'], 100, 100);
+		} elseif (!empty($module_info) && is_file(DIR_IMAGE . $module_info['module_ocn_category_wall_pro_image'])) {
+			$data['thumb'] = $this->model_tool_image->resize($module_info['module_ocn_category_wall_pro_image'], 100, 100);
+		} else {
+			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		}
+
+		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+			
 		$data['module_ocn_category_wall_pro_image_width'] = isset($this->request->post['module_ocn_category_wall_pro_image_width'])
 			? $this->request->post['module_ocn_category_wall_pro_image_width']
 			: (!empty($module_info) ? $module_info['module_ocn_category_wall_pro_image_width'] : $default_data['module_ocn_category_wall_pro_image_width']);

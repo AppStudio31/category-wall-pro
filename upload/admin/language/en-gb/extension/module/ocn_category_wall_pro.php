@@ -33,6 +33,7 @@ $_['entry_status']                   = 'Status';
 $_['entry_height_status']            = 'Fix height';
 $_['entry_title']                    = 'Title';
 $_['entry_image']                    = 'Category Image';
+$_['entry_custom_image']             = 'Custom Image';
 $_['entry_image_width']              = 'Image width';
 $_['entry_image_height']             = 'Image height';
 $_['entry_description']              = 'Category Description';

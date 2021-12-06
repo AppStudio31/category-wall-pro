@@ -33,6 +33,7 @@ $_['entry_status']                   = 'Статус';
 $_['entry_height_status']            = 'Фиксировать высоту';
 $_['entry_title']                    = 'Заголовок';
 $_['entry_image']                    = 'Изображение категории';
+$_['entry_custom_image']             = 'Выбрать изображение';
 $_['entry_image_width']              = 'Ширина изображения';
 $_['entry_image_height']             = 'Высота изображения';
 $_['entry_description']              = 'Описание категории';

@@ -35,7 +35,12 @@ class ControllerExtensionModuleOCNCategoryWallPro extends Controller {
 		$data['height_status'] = $setting['module_ocn_category_wall_pro_height_status'];
 		$data['image_status'] = $setting['module_ocn_category_wall_pro_image_status'];
 		$data['subcategory_collapse_status'] = $setting['module_ocn_category_wall_pro_subcategory_collapse_status'];
-
+		
+		if ($setting['module_ocn_category_wall_pro_image']) {
+			$data['image'] = $this->model_tool_image->resize($setting['module_ocn_category_wall_pro_image'], $setting['module_ocn_category_wall_pro_image_width'], $setting['module_ocn_category_wall_pro_image_height']);
+		} else {
+			$data['image'] = $this->model_tool_image->resize('placeholder.png', $setting['module_ocn_category_wall_pro_image_width'], $setting['module_ocn_category_wall_pro_image_height']);
+		}
 		foreach ($categories as $category) {
 			// Level 2
 			$children_data = [];
